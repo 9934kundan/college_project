@@ -39,10 +39,10 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 	} else if function == "addInsurer" { //initialize a course for a user
 		return t.addinsurer(stub, args)
 	} else if function =="addDealer {
-    return t.addDealer(stub, args)
+           return t.addDealer(stub, args)
   }
   
-  fmt.Println("invoke did not find function: " + function) //error
+   fmt.Println("invoke did not find function: " + function) //error
 	return shim.Error("Received unknown function call")
   
   }
