@@ -21,16 +21,38 @@ fun (t *SimpleChaincode) init_manufacturer(stub shim.ChaincodeStubInterface, arg
    }
    
    manufacturerid := manufacturerjson.ManufacturerId
-   manufacturername := manufacturerjson.ManufacturerName
+   companyname := manufacturerjson.CompanyName
    
    
-   // check if user already exist
+   // check if manufacturer already exist
    
    userAsBytes, err := stub.GetState(manufacturerid)
    if err != nil {
+	   return shim.Error(err.Error())
+   } else if userAsBytes != nil {
          fmt.Println("Already registered with this id " + err.Error())
          return shim.Error("Already registered with this id " + manufacturerid)
    }
+			
+  // create new id
+			
+			objectType := "manufacturer"
+			manufacturer := &manufacturer(objectType, manufacturerid, companyname)
+			manufacturerJSON, err := json.Marshal(manufacturer)
+			if err != nil {
+				return shim.Error(err.Error())
+			}
+			
+			
+			// save to the state
+			
+			err = stub.PutState(manufactutrerid, manufacturerJSON)
+			if err != nil {
+				return shim.Error(err.Error())
+			}
+			
+			}			
+   
    
    
    
