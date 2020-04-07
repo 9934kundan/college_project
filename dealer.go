@@ -17,3 +17,4 @@ type dealer struct {
   DealerId string `json:"dealerid"`
   AgencyNmae string `json:"agnecyname"`
   }
+
