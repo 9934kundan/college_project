@@ -22,11 +22,14 @@ type SimpleChaincode struct {
 
 type m_car struct {
   ObjectType     string `json:"docType"` //docType is used to distinguish the various types of objects in state database
-	CarId          string `json:"carid"`
-  ChessisNo         string `json:"chessisno"`
-	ModelId       string `json:"modelid"`
-	CarOwner    string `json:"carowner"`
-  NewOwner    string `json:"newowner"`
-	Color   string `json:"color"`
+  CarId          string `json:"carid"`
+  ChessisNo      string `json:"chessisno"`
+  ModelId        string `json:"modelid"`
+  CarOwner       string `json:"carowner"`
+  NewOwner       string `json:"newowner"`
+  Color          string `json:"color"`
+  CompanyName    string `json:"companyname"`
 }
+
+
 
