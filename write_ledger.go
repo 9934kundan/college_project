@@ -15,7 +15,7 @@ fun (t *SimpleChaincode) init_manufacturer(stub shim.ChaincodeStubInterface, arg
    
    var err error
    manufacturerjson := manufacture{}
-   err = json.Unmarshal([]byte(args[0], &manufacturer)
+	err = json.Unmarshal([]byte(args[0]), &manufacturerjson)
    if err != nil {
          fmt.Println(err.Error())
    }
