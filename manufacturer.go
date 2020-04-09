@@ -30,6 +30,3 @@ type m_car struct {
   Color          string `json:"color"`
   CompanyName    string `json:"companyname"`
 }
-
-
-
