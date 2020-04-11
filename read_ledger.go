@@ -26,9 +26,9 @@ func (t *SimpleChaincode) car_info(stub shim.ChaincodeStubInterface, args []stri
 
 // get car manufacturer info
 
-func (t *SimpleChaincode) readUser(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+func (t *SimpleChaincode) car_manufacturer_info(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	var err error
-	queryString := fmt.Sprintf("{\"selector\":{\"docType\":\"car_info_manufacturer\"}}")
+	queryString := fmt.Sprintf("{\"selector\":{\"docType\":\"car_manufacturer_info\"}}")
 	queryResults, err := getQueryResultForQueryString(stub, queryString)
 	if err != nil {
 		return shim.Error(err.Error())
