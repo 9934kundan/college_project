@@ -93,8 +93,185 @@ fun (t *SimpleChaincode) addCarOnLedger(stub shim.ChaincodeStubInterface, args [
 		  return shim.Error("Failed to update the state")
 	  }
 
-	  return shim.Success("Ok")
+	  return shim.Success("OK")
 
 
 	  
   }
+
+fun (t *SimpleChaincode) sell_to_customer(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+	  var err error
+
+	  carjson := m_car{}
+	  err = json.Unmarshal([]byte(args[0]), &carjson)
+	  if err != nil {
+		  return shim.Error("Failed to unmarshall")
+	  }
+
+	  carid := carjson.CarId
+	  dealerid := carjson.DealerId
+	  carowner := carjson.CarOwner
+
+	  valAsBytes, err := stub.GetState(carid)
+	  if err != nil {
+		  return shim.Error("Failed to get the state of the car")
+	  } else if valAsBytes == nil {
+		  return shim.Error("This car is not registered the ledger")
+	  }
+
+	  var car m_car
+	  car.ObjectType = "m_car"
+	  car.CarId = carid
+	  car.CarOwner = carowner
+
+	  carAsBytes, err := json.Marshal(car)
+	  if err != nil {
+		  return shim.Error("Failed to marshal")
+	  }
+
+	  err = stub.PutState(carAsBytes)
+	  
+	 fmt.Println('Car has been sold to the customer')
+	 
+	  if err != nil {
+		  return shim.Error("Failed to update the state")
+	  }
+
+	  return shim.Success("OK")
+
+
+	  
+  }
+
+fun (t *SimpleChaincode) insurance_car(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+	  var err error
+
+	  carjson := m_car{}
+	  err = json.Unmarshal([]byte(args[0]), &carjson)
+	  if err != nil {
+		  return shim.Error("Failed to unmarshall")
+	  }
+
+	  carid := carjson.CarId
+	  carowner := carjson.CarOwner
+	  insurerid := carjson.InsurerId
+
+	  valAsBytes, err := stub.GetState(carid)
+	  if err != nil {
+		  return shim.Error("Failed to get the state of the car")
+	  } else if valAsBytes == nil {
+		  return shim.Error("This car is not registered the ledger")
+	  }
+
+	  var car m_car
+	  car.ObjectType = "m_car"
+	  car.CarId = carid
+	  car.CarOwner = carowner
+	  car.InsurerId = insurerid
+
+	  carAsBytes, err := json.Marshal(car)
+	  if err != nil {
+		  return shim.Error("Failed to marshal")
+	  }
+
+	  err = stub.PutState(carAsBytes)
+	
+	fmt.Println('Car has been insured by insurer')
+	  if err != nil {
+		  return shim.Error("Failed to update the state")
+	  }
+
+	  return shim.Success("OK")
+
+
+	  
+  }
+
+
+fun (t *SimpleChaincode) rta_approval(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+	  var err error
+
+	  carjson := m_car{}
+	  err = json.Unmarshal([]byte(args[0]), &carjson)
+	  if err != nil {
+		  return shim.Error("Failed to unmarshall")
+	  }
+
+	  carid := carjson.CarId
+	  carowner := carjson.CarOwner
+	  rtaid := carjson.RTAId
+
+	  valAsBytes, err := stub.GetState(carid)
+	  if err != nil {
+		  return shim.Error("Failed to get the state of the car")
+	  } else if valAsBytes == nil {
+		  return shim.Error("This car is not registered the ledger")
+	  }
+
+	  var car m_car
+	  car.ObjectType = "m_car"
+	  car.CarId = carid
+	  car.CarOwner = carowner
+	  car.RTAId = rtaid
+
+	  carAsBytes, err := json.Marshal(car)
+	  if err != nil {
+		  return shim.Error("Failed to marshal")
+	  }
+        
+	  err = stub.PutState(carAsBytes)
+	fmt.Println('Car has been approved by RTA')
+	  if err != nil {
+		  return shim.Error("Failed to update the state")
+	  }
+
+	  return shim.Success("OK")
+  
+  }
+
+
+fun (t *SimpleChaincode) sell_to_another_customer(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+	  var err error
+
+	  carjson := m_car{}
+	  err = json.Unmarshal([]byte(args[0]), &carjson)
+	  if err != nil {
+		  return shim.Error("Failed to unmarshall")
+	  }
+
+	  carid := carjson.CarId
+	  carowner := carjson.CarOwner
+	  newcarowner := carjson.NewCarOwner
+
+	  valAsBytes, err := stub.GetState(carid)
+	  if err != nil {
+		  return shim.Error("Failed to get the state of the car")
+	  } else if valAsBytes == nil {
+		  return shim.Error("This car is not registered the ledger")
+	  }
+
+	  var car m_car
+	  car.ObjectType = "m_car"
+	  car.CarId = carid
+	  car.CarOwner = carowner
+	  car.NewCarOwner = newcarowner
+
+	  carAsBytes, err := json.Marshal(car)
+	  if err != nil {
+		  return shim.Error("Failed to marshal")
+	  }
+
+	  err = stub.PutState(carAsBytes)
+	
+	 fmt.Println('Call has been sold to the another customer')
+	  if err != nil {
+		  return shim.Error("Failed to update the state")
+	  }
+
+	  return shim.Success("OK") 
+
+
+	  
+  }
+
+
