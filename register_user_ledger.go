@@ -186,7 +186,7 @@ fun (t *SimpleChaincode) addrta(stub shim.ChaincodeStubInterface, args []string)
 	if err != nil {
 		return shim.Error("Failed to get the state")
 	} else if valAsBytes != nil {
-		shim.Error("Dealer already registered with this ID")
+		shim.Error("RTA already registered with this ID")
 	}
 
 	objectType := "rta"
