@@ -168,7 +168,44 @@ fun (t *SimpleChaincode) addDealer(stub shim.ChaincodeStubInterface, args []stri
 }
 
 
+// regitser an rta into the network
+
+fun (t *SimpleChaincode) addrta(stub shim.ChaincodeStubInterface, args []string) pb.response {
+
+	var err error
+	rtajson := rta{}
+	err := json.Unmarshal([]byte(args[0]), &rtajson)
+	if err != nil {
+		return shim.Error("Failed to Unmarshal")
+	}
+
+	rtaid := rtajson.RTAId
+	rtaname := rtajson.RTAName
 	
+	valAsBytes, err := stub.GetState(rtaid)
+	if err != nil {
+		return shim.Error("Failed to get the state")
+	} else if valAsBytes != nil {
+		shim.Error("Dealer already registered with this ID")
+	}
+
+	objectType := "rta"
+
+	rta := &rta(objectType, rtaid, rtaname)
+	userJSON, err = json.Marshal(rta)
+	if 	err != nil {
+		return shim.Error(err.Error())
+	}
+	
+	err = stub.PutState(rtaid, userJSON)
+	if err != nil {
+		return shim.Error("Failed to put the state")
+	}
+
+	return shim.Success("OK")
+
+}
+
 
    
    
