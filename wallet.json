@@ -1,0 +1,7 @@
+{
+ "walletName" : "wallet",
+ "eventName" : "Blockchain_event",
+ "listnerName" : "my-listner",
+ "channelName" : "mychannel",
+ "contractName" : "fabcar"
+}
