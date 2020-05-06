@@ -40,7 +40,9 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
 		return t.addinsurer(stub, args)
 	} else if function =="addDealer {
            return t.addDealer(stub, args)
-        } else if function == "car_info" {
+        }else if function =="addRTA {
+           return t.addDealer(stub, args)
+        }  else if function == "car_info" {
 	   return t.car_info(stub, args)
         } else if function == "car_manufacturer_info"
            return t.car_manufacturer_info(stub, args)
@@ -55,6 +57,8 @@ func (t *SimpleChaincode) Invoke(stub shim.ChaincodeStubInterface) pb.Response {
         }else if function == "insuranceCar"
            return t.insuranceCar(stub, args)
         }else if function == "rtaApprove"
+           return t.rtaApprove(stub, args)
+        }else if function == "sellToAnotherCustomer"
            return t.rtaApprove(stub, args)
         }
    fmt.Println("invoke did not find function: " + function) //error
