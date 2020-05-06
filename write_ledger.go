@@ -99,7 +99,7 @@ fun (t *SimpleChaincode) addCarOnLedger(stub shim.ChaincodeStubInterface, args [
 	  
   }
 
-fun (t *SimpleChaincode) sell_to_customer(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+fun (t *SimpleChaincode) sellToCustomer(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	  var err error
 
 	  carjson := m_car{}
@@ -143,7 +143,7 @@ fun (t *SimpleChaincode) sell_to_customer(stub shim.ChaincodeStubInterface, args
 	  
   }
 
-fun (t *SimpleChaincode) insurance_car(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+fun (t *SimpleChaincode) insuranceCar(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	  var err error
 
 	  carjson := m_car{}
@@ -188,7 +188,7 @@ fun (t *SimpleChaincode) insurance_car(stub shim.ChaincodeStubInterface, args []
   }
 
 
-fun (t *SimpleChaincode) rta_approval(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+fun (t *SimpleChaincode) rtaApprove(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	  var err error
 
 	  carjson := m_car{}
@@ -230,7 +230,7 @@ fun (t *SimpleChaincode) rta_approval(stub shim.ChaincodeStubInterface, args []s
   }
 
 
-fun (t *SimpleChaincode) sell_to_another_customer(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+fun (t *SimpleChaincode) sellToAnotherCustomer(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	  var err error
 
 	  carjson := m_car{}
